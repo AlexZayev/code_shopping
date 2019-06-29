@@ -1,6 +1,9 @@
 <?php
 
+use CodeShopping\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Seeder;
+use CodeShopping\Models\Product;
 
 class ProductsTableSeeder extends Seeder
 {
@@ -10,7 +13,15 @@ class ProductsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        factory(\CodeShopping\Models\Product::class, 20)->create();
+    {        
+        /** @var Collection $categories */
+        $categories = Category::all();
+        //Aula: Atribuindo categorias aos produtos na seeder
+        factory(Product::class, 10)
+            ->create()
+            ->each(function(Product $product) use ($categories) {
+                $categoryId = $categories->random()->id;
+                $product->categories()->attach($categoryId);
+            });
     }
 }

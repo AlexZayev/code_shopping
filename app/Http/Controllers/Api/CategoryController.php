@@ -3,6 +3,7 @@
 namespace CodeShopping\Http\Controllers\Api;
 
 use CodeShopping\Http\Controllers\Controller;
+use CodeShopping\Http\Resources\CategoryResource;
 use CodeShopping\Http\Requests\CategoryRequest;
 use CodeShopping\Models\Category;
 //use Illuminate\Http\Request;
@@ -11,19 +12,19 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return Category::all();
+        return CategoryResource::collection(Category::all());
     }
 
     public function store(CategoryRequest $request)
     {
         $category = Category::create($request->all());
         $category->refresh();
-        return $category;
+        return new CategoryResource($category);
     }
 
     public function show(Category $category)
     {
-        return $category;
+        return new CategoryResource($category);
     }
 
     public function update(CategoryRequest $request, Category $category)
@@ -32,12 +33,12 @@ class CategoryController extends Controller
         $category->save();
         //outra forma de fazer
         //return response([],204);
-        return $category;
+        new CategoryResource($category);
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
-        return response([],204);
+        return response()->json([], 204);
     }
 }
