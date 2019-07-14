@@ -4,7 +4,8 @@ namespace CodeShopping\Http\Controllers\Api;
 
 use CodeShopping\Models\ProductInput;
 use CodeShopping\Http\Resources\ProductInputResource;
-use Illuminate\Http\Request;
+use CodeShopping\Http\Requests\ProductInputRequest as Request;
+//use Illuminate\Http\Request;
 use CodeShopping\Http\Controllers\Controller;
 
 class ProductInputController extends Controller
@@ -17,7 +18,8 @@ class ProductInputController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $input = ProductInput::create($request->all());       
+        return new ProductInputResource($input);
     }
 
     public function show(ProductInput $input)

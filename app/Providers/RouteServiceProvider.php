@@ -32,13 +32,13 @@ class RouteServiceProvider extends ServiceProvider
 
         Route::bind('category', function($value){
             /** @var Collection $collection */
-            $collection = Category::whereId($value)->orWhere('slug', $value)->get();
+            $collection = Category::whereId((int) $value)->orWhere('slug', $value)->get(); //verificar depois se funciona com PostgreSQl. Add (int) em: 30/06/2019
             return $collection->first();
         });
 
         Route::bind('product', function($value){
             /** @var Collection $collection */
-            $collection = Product::whereId($value)->orWhere('slug', $value)->get();
+            $collection = Product::whereId((int) $value)->orWhere('slug', $value)->get(); //verificar depois se funciona com PostgreSQl. Add (int) em: 30/06/2019
             return $collection->first();
         });
     }

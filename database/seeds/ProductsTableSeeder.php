@@ -17,7 +17,7 @@ class ProductsTableSeeder extends Seeder
         /** @var Collection $categories */
         $categories = Category::all();
         //Aula: Atribuindo categorias aos produtos na seeder
-        factory(Product::class, 10)
+        factory(Product::class, 30)
             ->create()
             ->each(function(Product $product) use ($categories) {
                 $categoryId = $categories->random()->id;
