@@ -5,6 +5,7 @@ namespace CodeShopping\Providers;
 use CodeShopping\Models\ProductInput;
 use CodeShopping\Models\ProductOutput;
 use Illuminate\Support\ServiceProvider;
+use CodeShopping\Models\ProductInput;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -29,6 +30,7 @@ class AppServiceProvider extends ServiceProvider
             }
             $product->save();
         });
+
     }
 
     /**
