@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use Sluggable;
-    
+
     protected $fillable = ['name', 'active'];
 
     /**
@@ -28,6 +28,6 @@ class Category extends Model
 
     public function products()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Product::class); //se quiser pode incluir ->withTrashed(); aqui
     }
 }

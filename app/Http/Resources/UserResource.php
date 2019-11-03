@@ -4,7 +4,7 @@ namespace CodeShopping\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class UserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,14 +17,10 @@ class ProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'description' => $this->description,
-            'slug' => $this->slug,
-            'price' => (float) $this->price,
-            'stock' => (int) $this->stock,
-            'active' => (bool) $this->active,
+            'email' => $this->email,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'deleted_at' => $this->deleted_at
+            'deleted_at' => $this->deleted_at,
         ];
     }
 }
